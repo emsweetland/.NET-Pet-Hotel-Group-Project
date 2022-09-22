@@ -20,7 +20,9 @@ namespace pet_hotel.Controllers
         // occur when the route is missing in this controller
         [HttpGet]
         public IEnumerable<PetOwner> GetPets() {
-            return new List<PetOwner>();
+            Console.WriteLine("in get pet owners");
+            // return new List<PetOwner>();
+             return _context.PetOwners;
         }
     }
 }
