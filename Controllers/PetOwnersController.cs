@@ -22,7 +22,22 @@ namespace pet_hotel.Controllers
         public IEnumerable<PetOwner> GetPets() {
             Console.WriteLine("in get pet owners");
             // return new List<PetOwner>();
-             return _context.PetOwners;
+             return _context.PetOwner;
+        }
+
+        // Put for pet owners
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, PetOwner petOwner) {
+            Console.WriteLine("updating pet owner");
+            // If ID is not found...
+            if (id != petOwner.id) {
+                return BadRequest();
+            }
+
+            _context.Update(petOwner);
+            _context.SaveChanges();
+            
+            return Ok();
         }
     }
 }
