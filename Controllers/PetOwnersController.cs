@@ -37,7 +37,7 @@ namespace pet_hotel.Controllers
             _context.Update(petOwner);
             _context.SaveChanges();
             
-            return Ok();
+            return Ok(petOwner);
         }
 
         [HttpPost]
