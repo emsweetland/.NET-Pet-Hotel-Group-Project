@@ -22,7 +22,7 @@ namespace pet_hotel.Controllers
         public IEnumerable<PetOwner> GetPets() {
             Console.WriteLine("in get pet owners");
             // return new List<PetOwner>();
-             return _context.PetOwner;
+             return _context.PetOwners;
         }
 
         // Put for pet owners
