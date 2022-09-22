@@ -25,6 +25,16 @@ namespace pet_hotel.Controllers
              return _context.PetOwners;
         }
 
+        [HttpGet("{id}")]
+        public ActionResult<PetOwner> GetById(int id) {
+            PetOwner petOwner = _context.PetOwners.SingleOrDefault(b => b.id == id);
+
+            if(petOwner is null) {
+                return NotFound();
+            }
+            return petOwner;
+        }
+
         // Put for pet owners
         [HttpPut("{id}")]
         public IActionResult Put(int id, PetOwner petOwner) {
@@ -66,6 +76,8 @@ namespace pet_hotel.Controllers
 
             return NoContent();
         }
+
+        
 
 
 
