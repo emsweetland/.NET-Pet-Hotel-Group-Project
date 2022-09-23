@@ -26,6 +26,30 @@ namespace pet_hotel.Controllers
             return _context.Pets.Include(PetOwner => PetOwner.petOwner);
         }
 
+
+        [HttpPost]
+        public IActionResult Post(Pet taco) {
+            _context.Add(taco);
+            _context.SaveChanges();
+
+            return CreatedAtAction(nameof(Post), new {id = taco.id}, taco);
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            Pet pet = _context.Pets.SingleOrDefault(b => b.id == id);
+            if (pet is null) {
+                return NotFound();
+            }
+            _context.Pets.Remove(pet);
+            _context.SaveChanges();
+
+            return NoContent();
+        }
+
+
+
         [HttpPut("{id}")]
         public IActionResult Put(int id, Pet pet)
         {
@@ -40,6 +64,7 @@ namespace pet_hotel.Controllers
             return NoContent();
 
         }
+
       
 
         // [HttpGet]
