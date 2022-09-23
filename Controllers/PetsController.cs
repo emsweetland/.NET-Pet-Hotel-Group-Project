@@ -26,6 +26,7 @@ namespace pet_hotel.Controllers
             return _context.Pets.Include(PetOwner => PetOwner.petOwner);
         }
 
+
         [HttpPost]
         public IActionResult Post(Pet taco) {
             _context.Add(taco);
@@ -47,6 +48,22 @@ namespace pet_hotel.Controllers
             return NoContent();
         }
 
+
+
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, Pet pet)
+        {
+            Console.WriteLine("updating Pets");
+            if (id != pet.id)
+            {
+                return BadRequest();
+            }
+            _context.Update(pet);
+            _context.SaveChanges();
+            
+            return NoContent();
+
+        }
 
       
 
