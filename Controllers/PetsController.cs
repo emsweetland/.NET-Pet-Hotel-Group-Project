@@ -26,6 +26,20 @@ namespace pet_hotel.Controllers
             return _context.Pets.Include(PetOwner => PetOwner.petOwner);
         }
 
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, Pet pet)
+        {
+            Console.WriteLine("updating Pets");
+            if (id != pet.id)
+            {
+                return BadRequest();
+            }
+            _context.Update(pet);
+            _context.SaveChanges();
+            
+            return NoContent();
+
+        }
       
 
         // [HttpGet]
